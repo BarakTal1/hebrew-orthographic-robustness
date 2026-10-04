@@ -21,6 +21,14 @@ Hebrew spelling varies in ways a native reader treats as identical: full vs. def
 | Hebrew vs. English instructions? | No consistent advantage. |
 | Does tokenization explain fragility? | **No.** Niqqud adds about 30 tokens under BPE and 0 under DictaBERT, but flips don't correlate with token change (all \|r\| < 0.05). |
 
+![Robustness Gap and Flip-Rate heatmaps across 7 conditions and 5 perturbation families](assets/robustness_heatmaps.png)
+
+*Cooler is more robust. The RAG rows are the coolest on the rule-based families, and LoRA's typos cell is the clear hotspot in both panels.*
+
+![Tokenizer fertility change per perturbation family](assets/tokenizer_fertility.png)
+
+*Niqqud shatters an English-centric BPE tokenizer but leaves DictaBERT's Hebrew WordPiece untouched. Yet token change does not predict which predictions flip.*
+
 Clean Macro-F1: RAG-EN 0.858, RAG-HE 0.845, LoRA 0.844, zero-/few-shot about 0.80–0.81. The full robustness sweep (about 18k Haiku calls) cost about $1 thanks to a disk cache.
 
 ## Repository layout
@@ -29,6 +37,7 @@ Clean Macro-F1: RAG-EN 0.858, RAG-HE 0.845, LoRA 0.844, zero-/few-shot about 0.8
 notebooks/hebrew_sentiment_robustness.ipynb   full pipeline, runs end to end (written for Colab, T4 GPU)
 docs/report.pdf                               written report
 docs/slides.pdf                               presentation slides
+assets/                                       figures used in this README
 ```
 
 ## Running it
